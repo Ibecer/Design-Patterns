@@ -11,9 +11,44 @@ class Singleton {
     }
 }
 
-const singleton = new Singleton()
-const singleton2 = new Singleton()
+class WeekDays{
+    daysEs = ["Lunes",
+    "Martes", 
+    "Miercoles",
+    "Jueves",
+    "Viernes",
+    "Sabado",
+    "Domingo"]
 
-console.log(singleton.random)
-console.log(singleton2.random)
-console.log(singleton === singleton2)
+    daysEn = ["Monday",
+    "Tuesday", 
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday"]
+
+    constructor(lang){
+        this.lang = lang
+
+        if(WeekDays.instance){
+            return WeekDays.instance
+        }
+
+        WeekDays.instance = this
+    }
+
+    getDays(){
+        return this.lang === "es" ? 
+        this.daysEs :
+        this.daysEn
+    }
+}
+
+const weekdays = new WeekDays("en")
+const weekdays2 = new WeekDays("es")
+console.log(weekdays.getDays())
+console.log(weekdays2.getDays())
+
+
+
